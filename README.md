@@ -11,6 +11,9 @@ The main objective is to compare direct and iterative numerical approaches for d
 ## Problem Description
 
 The circuit consists of three electrical loops, each containing an independent voltage source and several resistors.
+<p align="center">
+  <img src="figures/circuit.png">
+</p>
 
 The unknown loop currents are denoted by:
 
