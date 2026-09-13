@@ -1,72 +1,193 @@
-# gaussian-gauss-seidel-circuit-analysis
-Solving a 3-loop electric circuit using Gaussian elimination, improved Gaussian, and Gauss-Seidel methods.
-# Numerical Methods for Electric Circuit Analysis
+# Numerical Solution of a Three-Loop Electrical Circuit
 
-This project analyzes a three-loop electric circuit with independent voltage sources and shared resistors.  
-The unknowns are the loop currents \( I_1, I_2, I_3 \), and the system of equations is derived using Kirchhoff's Voltage Law (KVL).
+## Overview
 
-## Problem description
+This project investigates the numerical solution of a three-loop electrical circuit using systems of linear equations. The circuit is formulated using Kirchhoff's Voltage Law (KVL), and the resulting system is solved using several numerical methods.
 
-We consider a circuit with:
-- Three loops, each with a voltage source \( E_1, E_2, E_3 \)
-- Five resistors \( R_1, R_2, R_3, R_4, R_5 \)
-- Shared resistors between loops (R3 between loops 1 and 2, R4 between loops 2 and 3)
+The main objective is to compare direct and iterative numerical approaches for determining the unknown loop currents and to investigate the convergence behavior of the Gauss-Seidel iterative method.
 
-Using KVL, the system of linear equations for \( I_1, I_2, I_3 \) is:
+---
+
+## Problem Description
+
+The circuit consists of three electrical loops, each containing an independent voltage source and several resistors.
+
+The unknown loop currents are denoted by:
+
+- \(I_1\): Current in Loop 1
+- \(I_2\): Current in Loop 2
+- \(I_3\): Current in Loop 3
+
+Some resistors are shared between adjacent loops. Therefore, the current through a shared resistor is determined by the difference between the corresponding loop currents.
+
+The circuit parameters used in this project are:
+
+| Parameter | Value |
+|---|---:|
+| \(R_1\) | \(2\,\Omega\) |
+| \(R_2\) | \(3\,\Omega\) |
+| \(R_3\) | \(4\,\Omega\) |
+| \(R_4\) | \(2\,\Omega\) |
+| \(R_5\) | \(5\,\Omega\) |
+| \(E_1\) | \(10\,V\) |
+| \(E_2\) | \(5\,V\) |
+| \(E_3\) | \(8\,V\) |
+
+---
+
+## Mathematical Formulation
+
+Applying Kirchhoff's Voltage Law to the three loops gives the following system of linear equations:
 
 \[
-\begin{aligned}
-(R_1 + R_3) I_1 - R_3 I_2 &= E_1 \\
--R_3 I_1 + (R_2 + R_3 + R_4) I_2 - R_4 I_3 &= E_2 \\
--R_4 I_2 + (R_4 + R_5) I_3 &= E_3
-\end{aligned}
+(R_1+R_3)I_1-R_3I_2=E_1
 \]
 
-With the numerical values:
-- \( R_1 = 2 \Omega, R_2 = 3 \Omega, R_3 = 4 \Omega, R_4 = 2 \Omega, R_5 = 5 \Omega \)
-- \( E_1 = 10 \text{ V}, E_2 = 5 \text{ V}, E_3 = 8 \text{ V} \)
-
-The analytical solution is approximately:
-- \( I_1 \approx 3.28 \text{ A} \)
-- \( I_2 \approx 2.42 \text{ A} \)
-- \( I_3 \approx 1.83 \text{ A} \)
-
-## Methods implemented
-
-The system is solved using three numerical methods:
-
-1. Gaussian Elimination (with partial pivoting)  
-   - Implemented in src/gaussian_elimination.py
-   - Produces the loop currents \( I_1, I_2, I_3 \)
-
-2. Improved Gaussian Elimination with Iterative Refinement  
-   - Implemented in src/gaussian_improved.py
-   - Uses iterative refinement to reduce the residual and improve accuracy
-
-3. Gauss–Seidel Iterative Method  
-   - Implemented in src/gauss_seidel.py
-   - Iteratively updates the currents and checks convergence
-   - A convergence plot of \( I_1, I_2, I_3 \) over iterations is included in figures/convergence_gauss_seidel.png
-
-All three methods converge to the same solution:
 \[
-I_1 \approx 3.28099,\quad I_2 \approx 2.42149,\quad I_3 \approx 1.83471
+-R_3I_1+(R_2+R_3+R_4)I_2-R_4I_3=E_2
 \]
 
-## Files
+\[
+-R_4I_2+(R_4+R_5)I_3=E_3
+\]
 
-- src/gaussian_elimination.py – Basic Gaussian elimination with partial pivoting
-- src/gaussian_improved.py – Gaussian elimination + iterative refinement
-- src/gauss_seidel.py – Gauss–Seidel iterative solver and convergence tracking
-- report/Numerical_Methods_Electric_Circuit_Sofia_Motamedi.pdf – Full project report (in Persian) with derivations, code, and discussion
-- figures/convergence_gauss_seidel.png – Convergence plot of the iterative method
+Substituting the given circuit parameters results in:
 
-## How to run
+\[
+4I_1-4I_2=10
+\]
 
-Requires Python and NumPy:
+\[
+-4I_1+9I_2-2I_3=5
+\]
 
-`bash
-pip install numpy matplotlib
-python src/gaussian_elimination.py
-python src/gaussian_improved.py
-python src/gauss_seidel.py
+\[
+-2I_2+7I_3=8
+\]
+
+In matrix form:
+
+\[
+\begin{bmatrix}
+4 & -4 & 0\\
+-4 & 9 & -2\\
+0 & -2 & 7
+\end{bmatrix}
+\begin{bmatrix}
+I_1\\
+I_2\\
+I_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+10\\
+5\\
+8
+\end{bmatrix}
+\]
+
+---
+
+## Numerical Methods
+
+Three different approaches are considered in this project.
+
+### 1. Analytical Solution
+
+The system is first manipulated algebraically to obtain the unknown currents.
+
+The reported values are approximately:
+
+\[
+I_1 \approx 3.28
+\]
+
+\[
+I_2 \approx 2.42
+\]
+
+\[
+I_3 \approx 1.83
+\]
+
+---
+
+### 2. Gaussian Elimination
+
+Gaussian elimination is used as a direct method for solving the system of linear equations.
+
+The method transforms the coefficient matrix into an upper triangular form and then obtains the unknown currents using back substitution.
+
+---
+
+### 3. Improved Gaussian Elimination
+
+An improved version of Gaussian elimination is also considered to provide a more robust direct solution procedure.
+
+This approach is particularly useful when numerical stability and the effects of pivot selection need to be considered.
+
+---
+
+### 4. Gauss-Seidel Iterative Method
+
+The Gauss-Seidel method is used as an iterative approach for solving the system.
+
+Starting from an initial approximation, the unknown currents are updated iteratively until the solution converges.
+
+The convergence of the three current values is investigated over successive iterations.
+
+---
+
+## Convergence Analysis
+
+The following figure shows the convergence behavior of \(I_1\), \(I_2\), and \(I_3\) during the Gauss-Seidel iterations.
+
+<p align="center">
+  <img src="figures/convergence.png" alt="Convergence of I1, I2, and I3 over iterations" width="750">
+</p>
+
+As shown in the plot, the current values approach stable values after a relatively small number of iterations. After the initial iterations, the changes become very small, indicating convergence of the iterative procedure.
+
+---
+
+## Results
+
+The project compares direct and iterative approaches for solving the same system of equations.
+
+| Method | Type | Main Characteristic |
+|---|---|---|
+| Analytical Solution | Direct | Algebraic solution |
+| Gaussian Elimination | Direct | Straightforward matrix-based solution |
+| Improved Gaussian Elimination | Direct | Improved numerical treatment |
+| Gauss-Seidel | Iterative | Requires convergence |
+For a small three-variable system such as this one, Gaussian elimination and improved Gaussian elimination provide straightforward solutions. For larger systems or systems with a suitable structure, iterative methods such as Gauss-Seidel can become more useful.
+
+---
+
+## Implementation
+
+The numerical calculations and iterative solution were implemented computationally. The project includes the calculation of the unknown currents and visualization of the convergence behavior of the Gauss-Seidel method.
+
+### Main tasks
+
+- Formulation of the circuit equations using KVL
+- Construction of the corresponding linear system
+- Analytical solution of the system
+- Solution using Gaussian elimination
+- Solution using improved Gaussian elimination
+- Iterative solution using Gauss-Seidel
+- Analysis and visualization of convergence
+
+---
+
+## Project Structure
+
+`text
+.
+├── README.md
+├── figures/
+│   └── convergence.png
+├── src/
+│   └── ...
+└── results/
+    └── ...
