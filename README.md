@@ -42,9 +42,9 @@ The circuit parameters used in this project are:
 
 Applying Kirchhoff's Voltage Law to the three loops gives the following system of linear equations:
 
-\[
-(R_1+R_3)I_1-R_3I_2=E_1
-\]
+<p align="center">
+  <b>(R₁ + R₃)I₁ − R₃I₂ = E₁</b>
+</p>
 
 \[
 -R_3I_1+(R_2+R_3+R_4)I_2-R_4I_3=E_2
