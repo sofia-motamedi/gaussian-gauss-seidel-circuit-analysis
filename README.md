@@ -127,26 +127,6 @@ $$
 
 The system can be written in matrix form as:
 
-$$
-\begin{bmatrix}
-4 & -4 & 0 \\
--4 & 9 & -2 \\
-0 & -2 & 7
-\end{bmatrix}
-\begin{bmatrix}
-I_1 \\
-I_2 \\
-I_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-10 \\
-5 \\
-8
-\end{bmatrix}
-$$
-
-or, more compactly,
 
 $$
 A\mathbf{I}=\mathbf{b}
