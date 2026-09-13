@@ -143,7 +143,7 @@ The convergence of the three current values is investigated over successive iter
 The following figure shows the convergence behavior of \(I_1\), \(I_2\), and \(I_3\) during the Gauss-Seidel iterations.
 
 <p align="center">
-  <img src="figures/convergence.png" alt="Convergence of I1, I2, and I3 over iterations" width="750">
+  <img src="figures/convergence_gauss_seidel.png" alt="Convergence of I1, I2, and I3 over iterations" width="750">
 </p>
 
 As shown in the plot, the current values approach stable values after a relatively small number of iterations. After the initial iterations, the changes become very small, indicating convergence of the iterative procedure.
