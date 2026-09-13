@@ -105,7 +105,7 @@ $$
 -R_4I_2+(R_4+R_5)I_3=E_3
 $$
 
-These equations form a system of three linear equations with three unknowns. 1
+These equations form a system of three linear equations with three unknowns. 
 
 ---
 
@@ -179,7 +179,7 @@ $$
 I_3 \approx 1.83
 $$
 
-These values provide a reference for comparison with the numerical methods. 2
+These values provide a reference for comparison with the numerical methods. 
 
 ---
 
