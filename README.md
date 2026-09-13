@@ -18,6 +18,9 @@ The project also examines the convergence behavior of the Gauss-Seidel method by
 ## Problem Description
 
 The electrical circuit consists of three loops. Each loop contains an independent voltage source and several resistors.
+<p align="center">
+  <img src="figures/circuit.png">
+</p>
 
 The unknown loop currents are denoted by:
 
@@ -252,7 +255,7 @@ The Gauss-Seidel method was used to investigate the convergence of the three loo
 The following figure shows the values of $I_1$, $I_2$, and $I_3$ over successive iterations.
 
 <p align="center">
-  <img src="figures/convergence.png" alt="Convergence of I1, I2, and I3 over iterations" width="800">
+  <img src="figures/convergence_gauss_seidel.png" alt="Convergence of I1, I2, and I3 over iterations" width="800">
 </p>
 
 ### Interpretation
@@ -307,59 +310,6 @@ However, convergence must be examined before relying on an iterative solution. T
 
 ---
 
-## Project Workflow
-
-The overall procedure followed in this project can be summarized as:
-
-Electrical Circuit
-       │
-       ▼
-Apply Kirchhoff's Voltage Law
-       │
-       ▼
-Construct Linear System
-       │
-       ▼
-┌─────────────────────────────┐
-│                             │
-▼                             ▼
-Direct Methods          Iterative Method
-│                             │
-├── Gaussian Elimination      └── Gauss-Seidel
-│
-└── Improved Gaussian
-    Elimination
-       │                             │
-       └──────────────┬──────────────┘
-                      ▼
-               Compare Results
-                      │
-                      ▼
-              Analyze Convergence
----
-
-## Project Structure
-
-numerical-methods-circuit/
-│
-├── README.md
-│
-├── figures/
-│   └── convergence.png
-│
-├── src/
-│   └── ...
-│
-└── results/
-    └── ...
-### Directory Description
-
-- README.md — Project documentation
-- figures/ — Figures and visualizations
-- src/ — Source code for the numerical methods
-- results/ — Numerical results and outputs
-
----
 
 ## Technologies and Concepts
 
